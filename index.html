@@ -68,16 +68,16 @@
           });
 
           if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`Failed to fetch the joke. Server responded with status: ${response.status}`);
           }
 
           const data = await response.json();
           console.log("Response from n8n:", data); // For debugging
-          // همیشه یه جوک برگردونده می‌شه، پس نیازی به شرط نیست
+          // همیشه یه جوک برگردونده می‌شه، پس مستقیم نمایش می‌دیم
           jokeElement.innerText = data.message;
         } catch (error) {
           console.error("Error:", error);
-          jokeElement.innerText = `An error occurred! Error: ${error.message}`;
+          jokeElement.innerText = `Oops! Something went wrong. Please try again later. (Error: ${error.message})`;
         }
       }
     </script>
