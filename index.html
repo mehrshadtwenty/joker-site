@@ -4,23 +4,45 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        text-align: center;
-        padding: 20px;
+        background-color: #1a1a1a;
         margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
       }
       .container {
-        max-width: 500px;
-        margin: 0 auto;
-        background: white;
+        position: relative;
+        max-width: 600px;
+        width: 90%;
+        text-align: center;
         padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+      .container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('joker-bg.jpg'); /* تصویر خنده جوکر */
+        background-size: cover;
+        background-position: center;
+        opacity: 0.3;
+        z-index: -1;
+        border-radius: 15px;
       }
       h1 {
-        color: #d32f2f;
+        color: #ff4444;
         font-size: 2em;
         margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       }
       input, button {
         padding: 10px;
@@ -28,25 +50,27 @@
         border-radius: 5px;
         border: 1px solid #ccc;
         font-size: 1em;
+        background-color: rgba(255, 255, 255, 0.8);
       }
       button {
-        background-color: #d32f2f;
+        background-color: #ff4444;
         color: white;
         border: none;
         cursor: pointer;
         transition: background-color 0.3s;
       }
       button:hover {
-        background-color: #b71c1c;
+        background-color: #cc0000;
       }
       #joke {
         margin-top: 20px;
-        font-size: 1.2em;
-        color: #333;
-        background-color: #f9f9f9;
+        font-size: 1.3em;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
         padding: 15px;
-        border-radius: 5px;
-        border-left: 4px solid #d32f2f;
+        border-radius: 10px;
+        border-left: 5px solid #ff4444;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
       }
     </style>
   </head>
@@ -82,7 +106,7 @@
 
           const data = await response.json();
           console.log("Response from n8n:", data); // For debugging
-          // همیشه یه جوک برگردونده می‌شه، پس مستقیم نمایش می‌دیم
+          // فقط جوک نمایش داده می‌شه
           jokeElement.innerText = data.message;
         } catch (error) {
           console.error("Error:", error);
